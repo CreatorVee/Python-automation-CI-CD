@@ -2,38 +2,41 @@ pipeline {
     agent any
 
     environment {
+        AWS_ACCESS_KEY_ID = credentials('jenkins_aws_access_key_id')
+        AWS_SECRET_ACCESS_KEY = credentials('jenkins_aws_secret_access_key')
         AWS_DEFAULT_REGION = 'eu-north-1'
-        ECR_URL = '353545917196.dkr.ecr.eu-north-1.amazonaws.com'
-        REPO_NAME = 'tf-python'
-        EC2_USER = 'ec2-user'
-        EC2_HOST = '16.171.62.9'
-        SSH_KEY_PATH = '~/.ssh/id_rsa'
+        VENV_DIR = '.venv'
     }
 
     stages {
-        stage('Install Python Dependencies') {
-    steps {
-        sh '''
-            python3 -m venv .venv
-            . .venv/bin/activate
-            pip install boto3 paramiko
-        '''
-    }
-}
+        stage('Setup Python Environment') {
+            steps {
+                sh '''
+                    python3 -m venv ${VENV_DIR}
+                    . ${VENV_DIR}/bin/activate
+                    pip install --upgrade pip
+                    pip install boto3 paramiko requests
+                '''
+            }
+        }
 
-stage('Fetch Images from ECR') {
-    steps {
-        sh '. .venv/bin/activate && python3 ecr_list_images.py'
-    }
-}
-
-        stage('Input: Choose Image Tag') {
+        stage('Fetch Images from ECR') {
             steps {
                 script {
-                    def selectedTag = input message: 'Select image to deploy:', parameters: [
-                        string(name: 'TAG', defaultValue: 'latest', description: 'Image tag')
+                    // Run your Python script that lists ECR images
+                    sh ". ${VENV_DIR}/bin/activate && python3 ecr_list_images.py > images.txt"
+
+                    // Read the images.txt file into a Groovy list
+                    def images = readFile('images.txt').trim().split("\\n")
+
+                    // Let user select one image tag
+                    def userChoice = input message: 'Select image tag to deploy:', parameters: [
+                        choice(name: 'IMAGE_TAG', choices: images.join('\n'), description: 'Choose an image tag')
                     ]
-                    writeFile file: 'selected_tag.txt', text: selectedTag
+
+                    // Save choice in environment for next stages
+                    env.SELECTED_IMAGE_TAG = userChoice
+                    echo "User selected image: ${userChoice}"
                 }
             }
         }
@@ -41,24 +44,8 @@ stage('Fetch Images from ECR') {
         stage('Deploy to EC2') {
             steps {
                 script {
-                    def selectedTag = readFile('selected_tag.txt').trim()
-                    def image = "${ECR_URL}/${REPO_NAME}:${selectedTag}"
-                    def commands = """
-                        aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${ECR_URL}
-                        docker pull ${image}
-                        docker stop tf-app || true
-                        docker rm tf-app || true
-                        docker run -d --name tf-app -p 80:80 ${image}
-                    """.stripIndent()
-
-                    // Write deploy.sh
-                    writeFile file: 'deploy.sh', text: commands
-
-                    // Copy and run on EC2
                     sh """
-                        chmod 600 ${SSH_KEY_PATH}
-                        scp -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} deploy.sh ${EC2_USER}@${EC2_HOST}:/home/${EC2_USER}/deploy.sh
-                        ssh -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} ${EC2_USER}@${EC2_HOST} 'bash deploy.sh'
+                    . ${VENV_DIR}/bin/activate && python3 deploy_to_ec2.py --image-tag ${env.SELECTED_IMAGE_TAG} --ec2-ip 16.171.62.9 --ssh-key ~/.ssh/id_rsa
                     """
                 }
             }
@@ -66,7 +53,11 @@ stage('Fetch Images from ECR') {
 
         stage('Validate Deployment') {
             steps {
-                sh 'curl -I http://16.171.62.9'
+                script {
+                    sh """
+                    . ${VENV_DIR}/bin/activate && python3 validate_deployment.py --ec2-ip 16.171.62.9
+                    """
+                }
             }
         }
     }
