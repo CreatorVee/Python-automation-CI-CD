@@ -12,16 +12,20 @@ pipeline {
 
     stages {
         stage('Install Python Dependencies') {
-            steps {
-                sh 'pip install boto3 paramiko'
-            }
-        }
+    steps {
+        sh '''
+            python3 -m venv .venv
+            . .venv/bin/activate
+            pip install boto3 paramiko
+        '''
+    }
+}
 
-        stage('Fetch Images from ECR') {
-            steps {
-                sh 'python3 get_ecr_images.py'
-            }
-        }
+stage('Fetch Images from ECR') {
+    steps {
+        sh '. .venv/bin/activate && python3 get_ecr_images.py'
+    }
+}
 
         stage('Input: Choose Image Tag') {
             steps {
