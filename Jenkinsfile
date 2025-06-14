@@ -23,7 +23,7 @@ pipeline {
 
 stage('Fetch Images from ECR') {
     steps {
-        sh '. .venv/bin/activate && python3 get_ecr_images.py'
+        sh '. .venv/bin/activate && python3 ecr_list_images.py'
     }
 }
 
