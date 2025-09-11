@@ -227,6 +227,13 @@ Pipeline Handles:
 
 Output:
  **Repository names +  deployed image**
+ ---
+ # Photographic evidence
+**Through Jnekins pipeline**
+ 
+<img width="1369" height="820" alt="2025-05-21_02h40_21" src="https://github.com/user-attachments/assets/9cb8299f-07f8-440a-bf86-be0aabd39eaa" />
+
+
 
 ---
 
