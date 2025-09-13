@@ -1,7 +1,28 @@
 #  Automation with Python – AWS & Jenkins  
 
-## 🛠️ Tech Stack  
-[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org/) [![AWS](https://img.shields.io/badge/AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)](https://aws.amazon.com/) [![EC2](https://img.shields.io/badge/AWS%20EC2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white)](https://aws.amazon.com/ec2/) [![ECR](https://img.shields.io/badge/AWS%20ECR-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)](https://aws.amazon.com/ecr/) [![IAM](https://img.shields.io/badge/AWS%20IAM-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white)](https://aws.amazon.com/iam/) [![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/) [![Jenkins](https://img.shields.io/badge/Jenkins-D24939?style=for-the-badge&logo=jenkins&logoColor=white)](https://www.jenkins.io/) [![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://www.linux.org/) [![Boto3](https://img.shields.io/badge/Boto3-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) [![Paramiko](https://img.shields.io/badge/Paramiko-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.paramiko.org/)  
+## " **Click the badges below to see how I used each technology in practice** "
+
+##  Tech Stack  
+
+# Core Technologies:
+[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://github.com/CreatorVee/Python-automation-CI-CD/blob/master/application.py)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://github.com/CreatorVee/Python-automation-CI-CD/blob/master/Dockerfile)
+[![Jenkins](https://img.shields.io/badge/Jenkins-D24939?style=for-the-badge&logo=jenkins&logoColor=white)](https://github.com/CreatorVee/Python-automation-CI-CD/blob/master/Jenkinsfile)
+[![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://github.com/CreatorVee/Python-automation-CI-CD/blob/master/deploy_to_ec2.py)
+
+---
+
+# AWS Services:
+[![AWS](https://img.shields.io/badge/AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)](https://github.com/CreatorVee/Python-automation-CI-CD/blob/master/list_subnets.py)
+[![EC2](https://img.shields.io/badge/AWS%20EC2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white)](https://github.com/CreatorVee/Python-automation-CI-CD/blob/master/deploy_to_ec2.py)
+[![ECR](https://img.shields.io/badge/AWS%20ECR-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)](https://github.com/CreatorVee/Python-automation-CI-CD/blob/master/ecr_list_images.py)
+[![IAM](https://img.shields.io/badge/AWS%20IAM-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white)](https://github.com/CreatorVee/Python-automation-CI-CD/blob/master/user_info.py)
+
+---
+
+# Python Libraries & Tools:
+[![Boto3](https://img.shields.io/badge/Boto3-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)](https://github.com/CreatorVee/Python-automation-CI-CD/blob/master/boto3)
+[![Paramiko](https://img.shields.io/badge/Paramiko-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://github.com/CreatorVee/Python-automation-CI-CD/blob/master/deploy_from_ecr.py)
 
 ---
 
