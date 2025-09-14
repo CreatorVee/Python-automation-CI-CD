@@ -5,7 +5,7 @@
 ##  Tech Stack  
 
 # Core Technologies:
-[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://github.com/CreatorVee/Python-automation-CI-CD/blob/master/application.py)
+[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://github.com/CreatorVee/Python-automation-CI-CD/blob/master/main.py)
 [![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://github.com/CreatorVee/Python-automation-CI-CD/blob/master/Dockerfile)
 [![Jenkins](https://img.shields.io/badge/Jenkins-D24939?style=for-the-badge&logo=jenkins&logoColor=white)](https://github.com/CreatorVee/Python-automation-CI-CD/blob/master/Jenkinsfile)
 [![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://github.com/CreatorVee/Python-automation-CI-CD/blob/master/deploy_to_ec2.py)
