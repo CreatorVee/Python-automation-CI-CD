@@ -1,4 +1,4 @@
-#  Automation with Python – AWS & Jenkins  
+#  Automation with Python – AWS & Jenkins -(work 100% authentic)
 
 ## " **Click the badges below to see how I used each technology in practice** "
 
@@ -31,11 +31,11 @@ This repository demonstrates **automation of AWS services** and **DevOps pipelin
 
 **It contains exercises showcasing:** 
 
- AWS resource management  
- EC2 deployments  
- Docker containers  
- ECR repositories   
- Jenkins pipelines 
+-  AWS resource management  
+-  EC2 deployments  
+-  Docker containers  
+-  ECR repositories   
+-  Jenkins pipelines 
 
 ---
 
@@ -67,7 +67,7 @@ This repository demonstrates **automation of AWS services** and **DevOps pipelin
 
 ---
 
-🟢 ***EXERCISE 1: Working with Subnets in AWS***
+# 🟢EXERCISE 1: Working with Subnets in AWS***
 
 **Goal:**  
 - Get all subnets in your default AWS region and print the subnet IDs.  
@@ -89,22 +89,22 @@ Output:
 
 # 🟢EXERCISE 2: Working with IAM in AWS
 
-Goal:
+**Goal**:
 
-List all IAM users.
+- List all IAM users.
 
-Print each user’s name and last active time.
+- Print each user’s name and last active time.
 
-Show the most recently active user.
+- Show the most recently active user.
 
-Run Command:
+**Run Command**:
 
-python exercise2_iam.py
+- python exercise2_iam.py
 
 
 AWS CLI Equivalent:
 
-aws iam list-users
+- aws iam list-users
 
 
 Output:
@@ -113,9 +113,9 @@ Output:
 
 ---
 
- # 🟢 EXERCISE 3: Automating EC2 + Docker + Nginx
+ #  🟢EXERCISE 3: Automating EC2 + Docker + Nginx
 
-Goal:
+**Goal**:
 
 - Launch EC2 in default VPC.
 
@@ -127,41 +127,41 @@ Goal:
 
 - Monitor container health.
 
-Run Command:
+**Run Command**:
 
 - python exercise3_ec2_nginx.py
 
 
 AWS CLI / Commands:
 
--  Launch EC2 instance
+-  **Launch EC2 instance**
 
 aws ec2 run-instances --image-id <AMI_ID> --instance-type t2.micro \
 --key-name <KEY_PAIR> --security-group-ids <SG_ID> --subnet-id <SUBNET_ID>
 
 
-- Install Docker
+-  **Install Docker**
 
 ssh -i ~/.ssh/my-key.pem ec2-user@<EC2_PUBLIC_IP> \
 "sudo amazon-linux-extras install docker -y; sudo service docker start; sudo usermod -a -G docker ec2-user"
 
 
--  Run Nginx container
+-   **Run Nginx container**
 
 ssh -i ~/.ssh/my-key.pem ec2-user@<EC2_PUBLIC_IP> "docker run -d -p 80:80 nginx"
 
 
-Output:
-✅ EC2 running
+**Output**:
+-  EC2 running
  Nginx accessible at http://<EC2_PUBLIC_IP>
-🟢 Monitoring checks container health
+ Monitoring checks container health
 
 ---
 
 
  # 🟢EXERCISE 4: Working with ECR in AWS
 
-Goal:
+**Goal**:
 
 - List all ECR repositories.
 
@@ -169,7 +169,7 @@ Goal:
 
 - List image tags for one repository (newest first).
 
- Run Command:
+ **Run Command**:
 
 - python exercise4_ecr.py
 
@@ -186,32 +186,32 @@ aws ecr describe-repositories
 aws ecr list-images --repository-name <REPO_NAME> --query 'imageIds[*].imageTag'
 
 
-Output:
+**Output**:
  Repository names + sorted image tags 🟢
 
 ---
 
  # 🟢EXERCISE 5: Python in Jenkins Pipeline
 
-Goal:
+**Goal**:
 Create a Jenkins job to fetch images from ECR and deploy to EC2.
 
 Manual Preparation (once only):
 
--  Start EC2 & install Docker
+-  **Start EC2 & install Docker**
 
 sudo amazon-linux-extras install docker -y
 sudo service docker start
 sudo usermod -a -G docker ec2-user
 
 
-- Install Python & dependencies on Jenkins
+- **Install Python & dependencies on Jenkins**
 
 sudo yum install python3 -y
 sudo pip3 install boto3 paramiko
 
 
--  Build & push Docker images to ECR
+-  **Build & push Docker images to ECR**
 
 docker build -t my-app:1.0 ./app
 docker build -t my-app:2.0 ./app
